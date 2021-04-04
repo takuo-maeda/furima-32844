@@ -22,3 +22,24 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+users table
+|Column        |Type    |Options     |
+|--------------|--------|------------|
+|users         |string  |null: false |
+|phonenumber   |text    |numll: false|
+|email         |text    |numll: false|
+|postalcode    |text    |numll: false|
+|age           |text    |numll: false|
+|birthday      |text    |numll: false|
+
+
+ table
+|Column        |Type    |Options     |
+|--------------|--------|------------|
+|users         |string  |null: false |
+|phonenumber   |text    |numll: false|
+|email         |text    |numll: false|
+|postalcode    |text    |numll: false|
+|age           |text    |numll: false|
+|birthday      |text    |numll: false|
