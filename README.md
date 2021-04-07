@@ -30,24 +30,17 @@ Things you may want to cover:
 |last_name                  |string    |null: false               |
 |first_name_pron            |string    |null: false               |
 |last_name_pron             |string    |null: false               |
-|address                    |string    |                          |
-|phone_number               |integer   |null: false               |
 |email                      |string    |null: false, unique: true |
 |postal__code               |string    |null: false               |
-|age                        |integer   |                          |
 |birthday                   |date      |                          |
 
 #Association
-has_many :item
+has_many :items
 
 
 ##buyers table
 |Column                 |Type    |Options                             |
 |-----------------------|------------|--------------------------------|
-|buyer_first_name       |string      |null: false                     |
-|buyer_last_name        |string      |null: false                     |
-|buyer_first_name_pron  |string      |null: false                     |
-|buyer_first_name_pron  |string      |null: false                     |
 |b_prefecture           |text        |null: false                     |
 |b_ward                 |text        |null: false                     |
 |b_town                 |text        |null: false                     |
@@ -55,12 +48,9 @@ has_many :item
 |b_building             |text        |                                |
 |b_postal_code          |string      |null: false                     |
 |b_phone_number         |string      |null: false                     |
-|b_email                |string      |null: false, unique: true       |
-|b_age                  |integer     |                                |
-|b_birthday             |date        |                                |
 
 #Association
-has_many :item
+has_many :items
 
 ##items table
 |Column                   |Type       |Options                  |
@@ -72,34 +62,18 @@ has_many :item
 |delivery_fee             |integer    |null: false                    |
 |delivery_fee_payment_id  |integer    |null: false                    |
 |delivery_prepare_id      |integer    |null: false                    |
-|user_id                  |references |null: false, foreign_key: true |
-|buyer_id                 |references |null: false, foreign_key: true |
+|user                     |references |null: false, foreign_key: true |
 
 #Association
  belongs_to :user
- belongs_to :buyer
+ belongs_to :purchases
 
-##owners table
-Column             |Type       |Options                         |
-|------------------|-----------|------------------------------- |
-|owner_name        |string     |null: false                     |
-|o_phone_number    |string     |null: false                     |
-|o_prefecture      |text       |null: false                     |
-|o_ward            |text       |null: false                     |
-|o_town            |text       |null: false                     |
-|o_address         |text       |null: false                     |
-|o_building        |text       |                                |
-|o_postal_code     |string     |null: false                     |
-|buyer_id          |integer    |null: false, foreign_key: true  |
 
-#Association
-has_one :item
-
-##purchase
+##purchases
 Column             |Type       |Options                        |
 |------------------|-----------|-------------------------------|
-|user_id          |text        |null: false, foreign_key: true |
-|item_id          |text        |null: false, foreign_key: true |
+|user              |references |null: false, foreign_key: true |
+|item              |references |null: false, foreign_key: true |
 
 #Association
 belongs_to :user
