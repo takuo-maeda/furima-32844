@@ -26,7 +26,8 @@ Things you may want to cover:
 ##users table
 |Column         |Type      |Options     |
 |---------------|----------|------------|
-|user          |string    |null: false |
+|user           
+|string    |null: false |
 |pronunciation  |string    |            |
 |address        |string    |            |
 |phone_number   |integer   |null: false |
@@ -34,6 +35,7 @@ Things you may want to cover:
 |postal__code   |string    |null: false |
 |age            |integer   |            |
 |birthday       |datetime  |            |
+
 #Association
 has_many :item
 
@@ -76,3 +78,5 @@ Column             |Type       |Options                   |
 |o_phone_number    |integer    |numll: false              |
 |o_address         |text       |numll: false              |
 |o_postal_code     |text       |numll: false              |
+
+has_one :item
