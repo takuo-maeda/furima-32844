@@ -63,16 +63,17 @@ has_many :item
 has_many :item
 
 ##items table
-|Column               |Type       |Options                  |
-|---------------------|-----------|-------------------------------|
-|item_name            |string     |null: false                    |
-|use_of_year_id       |integer    |null: false                    |
-|prefecture           |integer    |null: false                    |
-|delivery_fee         |text       |null: false                    |
-|delivery_payment_id  |integer    |null: false                    |
-|delivery_prepare_id  |integer    |null: false                    |
-|name_id              |references |null: false, foreign_key: true |
-|buyer_id             |references |null: false, foreign_key: true |
+|Column                   |Type       |Options                  |
+|-------------------------|-----------|-------------------------------|
+|item_name                |string     |null: false                    |
+|use_of_year              |string     |null: false                    |
+|status_id                |string     |null: false                    |
+|prefecture               |integer    |null: false                    |
+|delivery_fee             |integer    |null: false                    |
+|delivery_fee_payment_id  |integer    |null: false                    |
+|delivery_prepare_id      |integer    |null: false                    |
+|user_id                  |references |null: false, foreign_key: true |
+|buyer_id                 |references |null: false, foreign_key: true |
 
 #Association
  belongs_to :user
