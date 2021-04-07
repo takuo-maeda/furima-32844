@@ -24,59 +24,82 @@ Things you may want to cover:
 * ...
 
 ##users table
-|Column         |Type      |Options     |
-|---------------|----------|------------|
-|user           
-|string    |null: false |
-|pronunciation  |string    |            |
-|address        |string    |            |
-|phone_number   |integer   |null: false |
-|email          |string    |null: false |
-|postal__code   |string    |null: false |
-|age            |integer   |            |
-|birthday       |datetime  |            |
+|Column                     |Type      |Options                   |
+|---------------------------|----------|--------------------------|
+|first_name                 |string    |null: false               |
+|last_name                  |string    |null: false               |
+|first_name_pron            |string    |null: false               |
+|last_name_pron             |string    |null: false               |
+|address                    |string    |                          |
+|phone_number               |integer   |null: false               |
+|email                      |string    |null: false, unique: true |
+|postal__code               |string    |null: false               |
+|age                        |integer   |                          |
+|birthday                   |date      |                          |
 
 #Association
 has_many :item
 
 
 ##buyers table
-|Column           |Type    |Options     |
-|-----------------|--------|------------|
-|buyername        |string  |null: false |
-|b_pronunciation  |string  |            |
-|b_address        |string  |            |
-|b_phone_number   |text    |null: false |
-|b_email          |text    |null: false |
-|b_postal_code    |text    |null: false |
-|b_age            |text    |            |
-|b_birthday       |text    |            |
+|Column                 |Type    |Options                             |
+|-----------------------|------------|--------------------------------|
+|buyer_first_name       |string      |null: false                     |
+|buyer_last_name        |string      |null: false                     |
+|buyer_first_name_pron  |string      |null: false                     |
+|buyer_first_name_pron  |string      |null: false                     |
+|b_prefecture           |text        |null: false                     |
+|b_ward                 |text        |null: false                     |
+|b_town                 |text        |null: false                     |
+|b_address              |text        |null: false                     |
+|b_building             |text        |                                |
+|b_postal_code          |string      |null: false                     |
+|b_phone_number         |string      |null: false                     |
+|b_email                |string      |null: false, unique: true       |
+|b_age                  |integer     |                                |
+|b_birthday             |date        |                                |
 
 #Association
 has_many :item
 
 ##items table
-|Column            |Type       |Options                   |
-|------------------|-----------|--------------------------|
-|item_name         |string     |null: false               |
-|use_of_years      |integer    |numll: false              |
-|prefecture        |text       |numll: false              |
-|delivery_fee      |text       |numll: false              |
-|delivery_payment  |text       |numll: false              |
-|image             |           |                          |
-|name_id           |references |numll: false, foregin_key |
-|buyser_id         |references |numll: false, foregin_key |
+|Column               |Type       |Options                  |
+|---------------------|-----------|-------------------------------|
+|item_name            |string     |null: false                    |
+|use_of_year_id       |integer    |null: false                    |
+|prefecture           |integer    |null: false                    |
+|delivery_fee         |text       |null: false                    |
+|delivery_payment_id  |integer    |null: false                    |
+|delivery_prepare_id  |integer    |null: false                    |
+|name_id              |references |null: false, foreign_key: true |
+|buyer_id             |references |null: false, foreign_key: true |
 
 #Association
  belongs_to :user
  belongs_to :buyer
 
 ##owners table
-Column             |Type       |Options                   |
-|------------------|-----------|--------------------------|
-|owner_name        |string     |null: false               |
-|o_phone_number    |integer    |numll: false              |
-|o_address         |text       |numll: false              |
-|o_postal_code     |text       |numll: false              |
+Column             |Type       |Options                         |
+|------------------|-----------|------------------------------- |
+|owner_name        |string     |null: false                     |
+|o_phone_number    |string     |null: false                     |
+|o_prefecture      |text       |null: false                     |
+|o_ward            |text       |null: false                     |
+|o_town            |text       |null: false                     |
+|o_address         |text       |null: false                     |
+|o_building        |text       |                                |
+|o_postal_code     |string     |null: false                     |
+|buyer_id          |integer    |null: false, foreign_key: true  |
 
+#Association
 has_one :item
+
+##purchase
+Column             |Type       |Options                        |
+|------------------|-----------|-------------------------------|
+|user_id          |text        |null: false, foreign_key: true |
+|item_id          |text        |null: false, foreign_key: true |
+
+#Association
+belongs_to :user
+belongs_to :item
