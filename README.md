@@ -26,13 +26,13 @@ Things you may want to cover:
 ##users table
 |Column                     |Type      |Options                   |
 |---------------------------|----------|--------------------------|
+|nickname                   |string    |null: false               |
+|email                      |string    |null: false, unique: true |
+|encrypted_password         |string    |null: false               |
 |first_name                 |string    |null: false               |
 |last_name                  |string    |null: false               |
 |first_name_pron            |string    |null: false               |
 |last_name_pron             |string    |null: false               |
-|nickname                   |string    |null: false               |
-|password                   |string    |null: false               |
-|email                      |string    |null: false, unique: true |
 |birthday                   |date      |null: false               |
 
 #Association
@@ -42,33 +42,32 @@ has_many :purchases
 ##addresses table
 |Column               |Type        |Options                         |
 |---------------------|------------|--------------------------------|
-|prefecture_id        |integer     |null: false                     |
-|ward                 |integer     |null: false                     |
-|town                 |integer     |null: false                     |
-|address              |integer     |null: false                     |
-|building             |integer     |                                |
 |postal_code          |string      |null: false                     |
-|phone_number         |string      |null: false                     |
+|prefecture_id        |integer     |null: false                     |
+|town                 |string      |null: false                     |
+|address              |string      |null: false                     |
+|building             |string      |                                |
+|phone_number         |integer     |null: false                     |
 
 #Association
-has_one :items
+belongs_to :purchases
 
 ##items table
-|Column                   |Type       |Options                  |
+|Column                   |Type       |Options                        |
 |-------------------------|-----------|-------------------------------|
 |item_name                |string     |null: false                    |
-|price                    |integer    |null: false                    |
-|use_of_years             |string     |null: false                    |
-|status_id                |string     |null: false                    |
-|prefecture_id            |integer    |null: false                    |
-|delivery_fee_id          |integer    |null: false                    |
-|delivery_prepare_id      |integer    |null: false                    |
+|description              |text       |null: false                    |
+|category_id              |integer    |null: false                    |
+|status_id                |integer    |null: false                    |
 |delivery_fee_payment_id  |integer    |null: false                    |
+|prefecture_id            |integer    |null: false                    |
+|delivery_prepare_id      |integer    |null: false                    |
+|price                    |integer    |null: false                    |
 |user                     |references |null: false, foreign_key: true |
 
 #Association
  belongs_to :user
- belongs_to :purchases
+ has_one :purchases
 
 
 ##purchases
@@ -80,3 +79,4 @@ Column             |Type       |Options                        |
 #Association
 belongs_to :user
 belongs_to :item
+be_longs_to :addresses
