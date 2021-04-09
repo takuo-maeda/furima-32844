@@ -57,12 +57,13 @@ has_one :items
 |Column                   |Type       |Options                  |
 |-------------------------|-----------|-------------------------------|
 |item_name                |string     |null: false                    |
-|use_of_year              |string     |null: false                    |
+|price                    |integer    |null: false                    |
+|use_of_years             |string     |null: false                    |
 |status_id                |string     |null: false                    |
 |prefecture_id            |integer    |null: false                    |
 |delivery_fee_id          |integer    |null: false                    |
-|delivery_fee_payment_id  |integer    |null: false                    |
 |delivery_prepare_id      |integer    |null: false                    |
+|delivery_fee_payment_id  |integer    |null: false                    |
 |user                     |references |null: false, foreign_key: true |
 
 #Association
