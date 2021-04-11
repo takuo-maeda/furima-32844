@@ -3,15 +3,15 @@ class ItemsController < ApplicationController
   def index
   end
 
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 
-  def create
-  end
+  # def create
+  # end
 
-  def destroy
+  # def destroy
     
-  end
+  # end
 
 end
