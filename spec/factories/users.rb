@@ -12,6 +12,9 @@ FactoryBot.define do
     first_name_prono { Gimei.first.katakana }
     last_name_prono { Gimei.last.katakana }
     birthday { Faker::Date.backward }
+    # password_short {Faker::Lorem.characters(number: 5, min_alpha: 1, min_numeric: 1) }
+    # password_alpha {Faker::Lorem.Alpanameric.alpa(number: 6) }
+    # password_number {Faker::Lorem.Number(6) }
   end
 end
 
