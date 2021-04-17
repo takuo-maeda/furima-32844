@@ -9,6 +9,7 @@ RSpec.describe Item, type: :model do
 
       it 'image,item_name,description,category_id,status_id,prefecture_id,delivery_fee_payment_id,delivery_prepare_id,priceの値が存在すれば登録できること' do
         expect(@item).to be_valid
+        expect(@item.image).to be_valid
       end
 
       it 'imageが空では登録できないこと' do
@@ -59,10 +60,22 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
 
-      it 'prefecture_idが空では登録できないこと' do
+      it 'priceが空では登録できないこと' do
         @item.price = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
+
+      it '価格の範囲が、¥0~¥299円では登録できない' do
+        @item.price = Faker::Number.between(from: 0, to: 299)
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      end
+
+      it '価格の範囲が、¥9,999,999円以上だと登録できない' do
+        @item.price = Faker::Number.between(from: 99999999, to: 100000000000)
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
 
       it 'priceは全角カナでは登録できないこと' do
