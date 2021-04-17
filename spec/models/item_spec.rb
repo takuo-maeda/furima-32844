@@ -78,7 +78,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
 
-      it 'priceは全角カナでは登録できないこと' do
+      it 'priceは半角英数混合では登録できないこと' do
         require 'nkf'
         @item.price = Gimei.first.katakana
         @item.valid?

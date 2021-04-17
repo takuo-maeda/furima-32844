@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    # image { Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/20210327-085606.png") }
     item_name {Faker::Lorem.characters(number: 6, min_alpha: 1, min_numeric: 1) }
     description {Faker::Lorem.characters(number: 100, min_alpha: 1, min_numeric: 1) }
     category_id {Faker::Number.between(from: 2, to: 11)} # 2〜11のいずれかがランダムに表示
