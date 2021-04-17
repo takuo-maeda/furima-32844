@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show]
   before_action :move_to_index, except: [:index]
 
   def index
-    # @items=Item.all
+    @items = Item.all
   end
 
   def new
@@ -30,4 +31,9 @@ class ItemsController < ApplicationController
       redirect_to action: :index
     end
   end
+  
+  def set_item
+    @item = Item.find(params_id)
+  end
+
 end
