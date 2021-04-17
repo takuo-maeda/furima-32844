@@ -78,11 +78,17 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
 
-      it 'priceは半角英数混合では登録できないこと' do
-        require 'nkf'
+      it 'priceは全角では登録できないこと' do
         @item.price = Gimei.first.katakana
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
+
+      it 'priceは半角英数混合では登録できないこと' do
+        @item.price = Faker::Lorem.characters(number: 4, min_alpha: 1, min_numeric: 1) 
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
     end
 end

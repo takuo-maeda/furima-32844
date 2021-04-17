@@ -7,7 +7,7 @@ FactoryBot.define do
     prefecture_id {Faker::Number.between(from: 2, to: 48)} # 2〜48がランダムに表示
     delivery_fee_payment_id {Faker::Number.between(from: 2, to: 3)} # 2〜3がランダムに表示
     delivery_prepare_id {Faker::Number.between(from: 2, to: 4)} # 2〜4のいずれかがランダムに表示
-    price {Faker::Number.between(from: 1, to: 9999999)} # 1〜9999999のいずれかがランダムに表示
+    price {Faker::Number.between(from: 300, to: 9999999)} # 1〜9999999のいずれかがランダムに表示
     association :user
   end
 end
