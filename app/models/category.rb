@@ -12,7 +12,6 @@ class Category < ActiveHash::Base
     { id: 10, category_id: 'ハンドメイド' },
     { id: 11, category_id: 'その他' }
   ]
- 
    include ActiveHash::Associations
    has_many :items
  

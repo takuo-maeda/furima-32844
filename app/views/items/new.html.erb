@@ -1,11 +1,11 @@
 <div class="items-sell-contents">
   <header class="items-sell-header">
-    <%= link_to image_tag('furima-logo-color.png' , size: '185x50', class:"image_switch"), new_item_path %>
+    <%= link_to image_tag('furima-logo-color.png' , size: '185x50', class:"image_switch"), "/" %>
 
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with model: @items, url: new_item_path, local: true do |f| %>
+    <%= form_with model: @item, local: true do |f| %>
 
     <%= render 'shared/error_messages', model: f.object %>
 
@@ -48,7 +48,7 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:category_id_id, Category.all, :id, :category_id, {}, {class:"select-box", id:"item-category"}) %>
+        <%= f.collection_select(:category_id, Category.all, :id, :category_id, {}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
