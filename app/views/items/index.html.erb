@@ -124,11 +124,11 @@
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
        <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
-       <% if Item.exists?(1) %>
+       <% if Item.exists? %>
         <ul class='item-lists'>
           <% @items.each do |item| %>
            <li class='list'>
-             <%= link_to item_path(Item.find(item.user_id)) do %>
+             <%= link_to item_path(item.user_id) do %>
               <div class='item-img-content'>
                 <%= image_tag item.image, class: "item-img" %>
                 <%# あとから商品購入実装後追記%>
