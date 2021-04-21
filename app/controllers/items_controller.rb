@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
   def update
 
-    if @item.update(item_params)
+    if @item.valid?
       @item.update(item_params)
       render 'show'
     else
