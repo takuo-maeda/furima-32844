@@ -25,7 +25,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -35,6 +34,10 @@ class ItemsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @item.destroy
   end
 
   private
