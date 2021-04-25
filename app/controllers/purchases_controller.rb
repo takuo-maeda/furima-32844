@@ -8,7 +8,6 @@ class PurchasesController < ApplicationController
     @address_purchase = AddressPurchase.new(address_params)
     if @address_purchase.valid?
       @address_purchase.save
-      # binding.pryry
       redirect_to root_path
     else
       render ("purchases/index")
