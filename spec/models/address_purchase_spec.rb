@@ -7,6 +7,7 @@ RSpec.describe AddressPurchase, type: :model do
     end
 
     it 'すべての値が正しく入力されていれば保存できること' do
+      expect(@address_purchase).to be_valid
     end
     it '郵便番号が空だと保存できないこと' do
       @address_purchase.postal_code = ''
