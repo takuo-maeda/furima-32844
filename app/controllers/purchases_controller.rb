@@ -43,7 +43,7 @@ class PurchasesController < ApplicationController
 
   def set_redirect_to_root2
     if user_signed_in?
-      if Purchase.find(params[:item_id]).present?
+      if Purchase.exists?(item_id: params[:item_id])
         redirect_to root_path
       end
     end
