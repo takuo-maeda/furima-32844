@@ -1,7 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_redirect_to_root
-  before_action :set_redirect_to_root2
 
   def index
     @address_purchase = AddressPurchase.new
@@ -36,17 +35,8 @@ class PurchasesController < ApplicationController
   end
 
   def set_redirect_to_root
-    if current_user.id == Item.find(params[:item_id]).user_id
+    if current_user.id == Item.find(params[:item_id]).user_id || Purchase.exists?(item_id: params[:item_id])
       redirect_to root_path
     end
   end
-
-  def set_redirect_to_root2
-    if user_signed_in?
-      if Purchase.exists?(item_id: params[:item_id])
-        redirect_to root_path
-      end
-    end
-  end
-
 end
