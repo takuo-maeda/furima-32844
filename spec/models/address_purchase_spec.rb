@@ -62,6 +62,11 @@ RSpec.describe AddressPurchase, type: :model do
         @address_purchase.valid?
         expect(@address_purchase.errors.full_messages).to include("Item can't be blank")
       end
+      it 'tokenは空では登録できない' do
+        @address_purchase.token= ''
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
