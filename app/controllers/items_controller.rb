@@ -12,9 +12,8 @@ class ItemsController < ApplicationController
 
   def create
    @item = Item.new(item_params)
-
     if @item.valid? 
-    @item.save
+      @item.save
       redirect_to root_path
     else  
       render 'new'
@@ -51,7 +50,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
   def set_redirect_to_root
-    if current_user.id != @item.user_id
+    if current_user.id != @item.user_id || Purchase.exists?(item_id: params[:item_id])
       redirect_to root_path
     end
   end
