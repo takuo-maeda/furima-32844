@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
   def set_redirect_to_root
-    if current_user.id != @item.user_id || Purchase.exists?(item_id: params[:item_id])
+    if current_user.id != @item.user_id || @item.purchase.present?
       redirect_to root_path
     end
   end
