@@ -26,9 +26,9 @@
 }
 
 .item-box-img {
-  height: 50vh;
-  width: 60vw;
-  min-height: 500px;
+  height: 125px;
+  width: 125px;
+  min-height: 125px;
   background-color: rgb(205, 202, 202);
   object-fit: contain;
 }
