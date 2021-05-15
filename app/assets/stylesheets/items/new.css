@@ -91,6 +91,11 @@
 
 /* /出品画像 */
 
+div.image-element img {
+  width: 250px;
+  height: 250px;
+}
+
 /* 商品名と商品説明 */
 .new-items {
   padding: 2vh 0;

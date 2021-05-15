@@ -7,13 +7,15 @@
       <%= @item.item_name %>
     </h2>
     <div class="item-img-content">
-      <%= image_tag @item.image ,class:"item-box-img" %>
+    <% @item.images.each do |i| %>
+      <%= image_tag i, class:"item-box-img" %>
       <%# 商品購入後実装 %>
       <% if @item.purchase.present?%>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
       <% end %>
+    <% end %>
       <%# 商品購入後実装 %>
     </div>
     <div class="item-price-box">

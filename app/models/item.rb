@@ -5,13 +5,13 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :delivery_fee_payment
   belongs_to :delivery_prepare
-  has_one_attached :image
+  has_many_attached :images
   belongs_to :user
   has_one :purchase
 
 
     with_options presence: true do
-      validates :image, :item_name, :description, :category_id, :status_id,
+      validates :images, :item_name, :description, :category_id, :status_id,
                 :prefecture_id, :delivery_fee_payment_id,:delivery_prepare_id,
                 :price
     end
