@@ -9,7 +9,6 @@ const pay = () => {
     const formData = new FormData(formResult);
 
     const cardInfo = (card) => {
-      debugger
         Payjp.createToken(card, (status, response) => {
       if (status == 200) {
         const token = response.id;
@@ -27,8 +26,6 @@ const pay = () => {
     });
     };
 
-    
-
       const path = location.pathname
       const params = path.replace(/items/g, '').replace(/purchases/g, '').replace(/\//g, '');
       if (path.includes("items") && path.includes("purchases") && /^([1-9]\d*|0)$/.test(params)) {
@@ -40,22 +37,6 @@ const pay = () => {
         exp_year: `20${formData.get("address_purchase[exp_year]")}`,
        };
        cardInfo(card);
-      //  Payjp.createToken(card, (status, response) => {
-      //   if (status == 200) {
-      //     const token = response.id;
-      //     const renderDom = document.getElementById("charge-form");
-      //     const tokenObj = `<input value=${token} name='token' type="hidden"> `;
-      //     renderDom.insertAdjacentHTML("beforeend", tokenObj);
-      //     debugger;
-      //   };
-        
-      //   document.getElementById("card-number").removeAttribute("name");
-      //   document.getElementById("card-cvc").removeAttribute("name");
-      //   document.getElementById("card-exp-month").removeAttribute("name");
-      //   document.getElementById("card-exp-year").removeAttribute("name");
-        
-        // document.getElementById("charge-form").submit();
-      // });
     };
 
     const pathCard = location.pathname
@@ -69,23 +50,6 @@ const pay = () => {
       };
       cardInfo(card);
     };
-
-      // Payjp.createToken(card, (status, response) => {
-      //   if (status == 200) {
-      //     const token = response.id;
-      //     const renderDom = document.getElementById("charge-form");
-      //     const tokenObj = `<input value=${token} name='token' type="hidden"> `;
-      //     renderDom.insertAdjacentHTML("beforeend", tokenObj);
-      //   };
-        
-      //   document.getElementById("card-number").removeAttribute("name");
-      //   document.getElementById("card-cvc").removeAttribute("name");
-      //   document.getElementById("card-exp-month").removeAttribute("name");
-      //   document.getElementById("card-exp-year").removeAttribute("name");
-        
-      //   document.getElementById("charge-form").submit();
-      // });
-
   });
 };
 
