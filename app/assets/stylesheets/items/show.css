@@ -25,10 +25,11 @@
   font-size: 25px;
 }
 
+/* 商品画像 */
 .item-box-img {
-  height: 125px;
-  width: 125px;
-  min-height: 125px;
+  height: 250px;
+  width: 250px;
+  min-height: 250px;
   background-color: rgb(205, 202, 202);
   object-fit: contain;
 }
