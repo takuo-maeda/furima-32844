@@ -5,6 +5,7 @@ class PurchasesController < ApplicationController
   def index
     @address_purchase = AddressPurchase.new
     item_find
+    card_user_find
   end
   
   def create
@@ -24,7 +25,17 @@ class PurchasesController < ApplicationController
   def item_find
     @item = Item.find(params[:item_id])
   end
-  
+
+  def card_user_find
+    @card_info = Card.pluck(:user_id)
+    # @card = Card.find_by(user_id: current_user.id)
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    card = Card.find_by(user_id: current_user.id)
+    # redirect_to new_card_path and return unless card.present?
+    customer = Payjp::Customer.retrieve(card.customer_token)
+    @card = customer.cards.first
+  end
+
   def address_params
     params.require(:address_purchase).permit(:postal_code, :prefecture_id, :town, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end

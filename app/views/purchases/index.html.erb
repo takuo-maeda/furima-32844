@@ -39,8 +39,10 @@
     <%= render 'shared/error_messages', model: f.object %>
 
     <%# カード情報の入力 %>
+    <% unless @card_info.include?(current_user.id) %> 
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
+      <%# <% binding.pry %>
         クレジットカード情報入力
       </h1>
       <div class="form-group">
@@ -77,8 +79,21 @@
         <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
       </div>
     </div>
+    <% else %>
+    【カード番号】
+    <br>
+    <%= "**** **** **** " + @card[:last4] %>
+    <%# カード番号の下4桁を取得 %>
+    <br>
+    【有効期限】
+    <br>
+    <%= @card[:exp_month] %>
+    <%# 有効期限の「月」を取得 %>
+    /
+    <%= @card[:exp_year] %>
+    <% end %>
     <%# /カード情報の入力 %>
-    
+
     <%# 配送先の入力 %>
     <div class='shipping-address-form'>
       <h1 class='info-input-haedline'>
