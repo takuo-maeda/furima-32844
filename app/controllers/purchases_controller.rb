@@ -27,13 +27,13 @@ class PurchasesController < ApplicationController
   end
 
   def card_user_find
-    @card_info = Card.pluck(:user_id)
-    # @card = Card.find_by(user_id: current_user.id)
+    @card_user = Card.pluck(:user_id)
+    card = Card.find_by(user_id: current_user.id)
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     card = Card.find_by(user_id: current_user.id)
     # redirect_to new_card_path and return unless card.present?
-    customer = Payjp::Customer.retrieve(card.customer_token)
-    @card = customer.cards.first
+    # customer = Payjp::Customer.retrieve(card.customer_token)
+    # @card = customer.cards.first
   end
 
   def address_params
@@ -43,6 +43,15 @@ class PurchasesController < ApplicationController
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create( amount: @item.price , card: address_params[:token], currency: 'jpy')
   end
+
+  def pay_reserved_card
+    customer_token = current_user.card.customer_token
+    Payjp::Charge.create( 
+      amount: @item.price,
+      customer: customer_token,
+      currency: 'jpy')
+  end
+
 
   def set_redirect_to_root
     if current_user.id == Item.find(params[:item_id]).user_id || Purchase.exists?(item_id: params[:item_id])
