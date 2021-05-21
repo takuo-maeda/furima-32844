@@ -1,3 +1,5 @@
+    <% if Card.pluck(:user_id).include?(current_user.id) %>
+
 本当にを削除しますか？<br>
 
     【カード番号】
@@ -11,4 +13,11 @@
     <%= @card[:exp_year] %>
 
     <%# <%= @card %>
-    <%= link_to '削除する', card_path(@card.id), method: :delete %>
+    <%= link_to '削除する', card_path(@card.id), method: :deletee %>
+    <%= link_to '戻る', root_path %>
+    <% else %>
+    カード登録がまだのようです。
+    カード登録をお願いします。
+    <%= link_to '登録画面へ', new_card_path %>
+    <%= link_to '戻る', root_path %>
+    <% end %>
