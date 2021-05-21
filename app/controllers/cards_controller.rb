@@ -30,7 +30,7 @@ class CardsController < ApplicationController
 
     def destroy
       card = Card.find_by(user_id: current_user.id)
-      Payjp.api_key = Rails.application.credentials[:payjp_private_key]
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       customer = Payjp::Customer.retrieve(card.customer_token)
       customer.delete
       card.delete

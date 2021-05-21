@@ -13,7 +13,7 @@
     <%= @card[:exp_year] %>
 
     <%# <%= @card %>
-    <%= link_to '削除する', card_path(@card.id), method: :deletee %>
+    <%= link_to '削除する', card_path(@card.id), method: :delete %>
     <%= link_to '戻る', root_path %>
     <% else %>
     カード登録がまだのようです。
