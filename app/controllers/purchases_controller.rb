@@ -29,6 +29,7 @@ class PurchasesController < ApplicationController
 
   def update
    Purchase.create(purchase_params) 
+   redirect_to root_path
   end
   
   private

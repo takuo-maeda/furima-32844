@@ -2,6 +2,7 @@
 
   
     <%# カード情報の入力 %>
+    <% unless Card.pluck(:user_id).include?(current_user.id) %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
         クレジットカード情報入力
@@ -43,5 +44,13 @@
     <%# /カード情報の入力 %>
       <div class='buy-btn'>
       <%= f.submit "登録" ,class:"buy-red-btn" %>
+    <%= link_to '戻る', root_path %>
     </div>
+  <% else %>
+  すでにカード登録はお済みのようです。<br>
+  カードを削除される場合は次をクリック
+  <%= link_to '削除', card_path(current_user.id) %><br>
+  トップページへ
+  <%= link_to '戻る', root_path %>
+  <% end %>
 <% end %>
