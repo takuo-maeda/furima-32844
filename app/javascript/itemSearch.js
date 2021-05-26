@@ -8,18 +8,19 @@ if (location.pathname.match("/")){
       XHR.responseType = "json";
       XHR.send();
       XHR.onload = () => {
-        const itemName = XHR.response.keyword;
+        // const itemName = XHR.response.keyword;
         const searchResult = document.getElementById("search-result");
         searchResult.innerHTML = "";
         if (XHR.response) {
           const itemName = XHR.response.keyword;
-          itemName.forEach((item_search) => {
+          itemName.forEach((item) => {
             const childElement = document.createElement("div");
             childElement.setAttribute("class", "child");
-            childElement.setAttribute("id", item_search.id);
-            childElement.innerHTML = item_search.name;
+            childElement.setAttribute("id", item.id);
+            childElement.innerHTML = item.name;
+            console.log(item.name)
             searchResult.appendChild(childElement);
-            const clickElement = document.getElementById(item_search.id);
+            const clickElement = document.getElementById(item.id);
             clickElement.addEventListener("click", () => {
               document.getElementById("input_box").value = clickElement.textContent;
               clickElement.remove();
