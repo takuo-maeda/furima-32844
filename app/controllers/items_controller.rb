@@ -41,6 +41,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    return nil if params[:keyword] == ""
+    item_search = Item.where(['item_name LIKE ?', "%#{params[:keyword]}%"])
+    render json:{ keyword: item_search}
+  end
+
   private
   def item_params
     params.require(:item).permit(:item_name, :description, :category_id, :status_id, :delivery_fee_payment_id, :prefecture_id, :delivery_prepare_id, :price, images: []).merge(user_id: current_user.id)
