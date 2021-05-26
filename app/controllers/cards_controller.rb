@@ -36,5 +36,4 @@ class CardsController < ApplicationController
       card.delete
         redirect_to action: "new"
     end
-
 end
