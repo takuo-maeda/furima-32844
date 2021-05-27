@@ -17,7 +17,7 @@ if (location.pathname.match("/")){
             const childElement = document.createElement("div");
             childElement.setAttribute("class", "child");
             childElement.setAttribute("id", goods.id);
-            childElement.innerHTML = `No.${goods.id} ${goods.item_name}`;
+            childElement.innerHTML = `商品No.${goods.id} ${goods.item_name}`;
             searchResult.appendChild(childElement);
             const clickElement = document.getElementById(goods.id);
             clickElement.addEventListener("click", () => {
