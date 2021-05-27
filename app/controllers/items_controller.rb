@@ -43,8 +43,8 @@ class ItemsController < ApplicationController
 
   def search
     return nil if params[:keyword] == ""
-    item = Item.where(['item_name LIKE ?', "%#{params[:keyword]}%"])
-    render json:{ keyword: item}
+    goods = Item.where(['item_name LIKE ?', "%#{params[:keyword]}%"])
+    render json:{ keyword: goods}
   end
 
   private

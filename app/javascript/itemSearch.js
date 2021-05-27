@@ -13,14 +13,13 @@ if (location.pathname.match("/")){
         searchResult.innerHTML = "";
         if (XHR.response) {
           const itemName = XHR.response.keyword;
-          itemName.forEach((item) => {
+          itemName.forEach((goods) => {
             const childElement = document.createElement("div");
             childElement.setAttribute("class", "child");
-            childElement.setAttribute("id", item.id);
-            childElement.innerHTML = item.name;
-            console.log(item.name)
+            childElement.setAttribute("id", goods.id);
+            childElement.innerHTML = `No.${goods.id} ${goods.item_name}`;
             searchResult.appendChild(childElement);
-            const clickElement = document.getElementById(item.id);
+            const clickElement = document.getElementById(goods.id);
             clickElement.addEventListener("click", () => {
               document.getElementById("input_box").value = clickElement.textContent;
               clickElement.remove();
