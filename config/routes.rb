@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'products/index'
-  get 'products/search'
   devise_for :users
   root to: "items#index"
   resources :items do
@@ -10,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
   resources :cards, only: [:new, :create, :show, :destroy]
+  get 'products/index'
+  get 'products/search'
 end
 
 

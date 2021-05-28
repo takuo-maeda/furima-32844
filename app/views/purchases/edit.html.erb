@@ -13,4 +13,5 @@
     <%= @card[:exp_year] %>
 
     <%# <%= @card %>
-    <%= link_to '購入する', item_purchase_path(@item.id), method: :patch %>
+    <%= link_to '購入する', item_purchase_path(@item.id), method: :patch %><br>
+    <%= link_to '戻る', root_path %>
