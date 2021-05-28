@@ -2,7 +2,7 @@
 <header class='top-page-header'>
   <div class='search-bar-contents'>
     <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
-  <%= form_with model: @item, url:search_items_path, class:'search_base', local: true do |f| %>
+  <%= form_with model: @item, url:items_path, class:'search_base', local: true do |f| %>
     <form class="search-form" action="search">
      <%= f.text_field :input_box, class: "input-search-item" %>
       <%# <input class='input_box' placeholder='キーワードから探す'> %>
