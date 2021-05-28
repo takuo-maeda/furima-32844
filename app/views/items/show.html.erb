@@ -4,7 +4,7 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= @item.item_name %>
+      <%= "商品No.#{@item.id} 商品名:#{@item.item_name}" %>
     </h2>
     <div class="item-img-content">
     <% @item.images.each do |i| %>
@@ -33,8 +33,11 @@
     <p class="or-text">or</p>
     <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
     <% else %>
-    <%= link_to "購入画面に進む", item_purchases_path(@item.id) ,class:"item-red-btn"%>
-    <%= link_to "購入画面に進む", edit_item_purchase_path(@item.id) %>
+      <% if Card.pluck(:user_id).include?(current_user.id) %>
+        <%= link_to "購入画面に進む", edit_item_purchase_path(@item.id) ,class:"item-red-btn"%>
+      <% else %>
+        <%= link_to "購入画面に進む", item_purchases_path(@item.id) ,class:"item-red-btn"%>
+      <% end %>
   <% end %>
   <% end %>
  <% end %>

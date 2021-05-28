@@ -1,0 +1,37 @@
+<h1>
+  商品検索
+</h1>
+
+<%= search_form_for @p, url: products_search_path do |f| %>
+  <%= f.label :item_name_eq, '商品名' %>
+  <%= f.collection_select :item_name_eq, @product_name, :item_name, :item_name,  include_blank: '指定なし' %>
+  <%= f.collection_select :category_id_eq, @product_category_name, :id, :category_id,  include_blank: '指定なし' %>
+  <%= f.collection_select :status_id_eq, @product_status_name, :id, :status_id,  include_blank: '指定なし' %>
+  <br>
+    <br>
+  <%= f.label :price, '価格：' %>
+  <%= f.radio_button :price_lteq, '' %>
+  指定なし
+  <%= f.radio_button :price_lteq, '1000' %>
+  1000円以下
+  <%= f.radio_button :price_lteq, '2500' %>
+  2500円以下
+  <%= f.radio_button :price_lteq, '5000' %>
+  5000円以下
+    <%= f.radio_button :price_lteq, '10000' %>
+  1万円以下
+    <%= f.radio_button :price_lteq, '100000' %>
+  10万円以下
+  <br>
+  <%= f.submit '検索' %><%= link_to 'トップページへ戻る', root_path %>
+<% end %>
+<%# 商品一覧 %>
+<% @products.each do |product| %>
+  <br>
+  <li>
+    <%= "商品名：#{product.item_name}" %>
+    <%= "商品カテゴリー：#{product.category.category_id}" %>
+    <%= "商品状態：#{product.status.status_id}" %>
+    <%= "商品価格：¥#{product.price}円" %>
+  </li>
+<% end %>

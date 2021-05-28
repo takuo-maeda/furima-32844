@@ -131,6 +131,7 @@
              <%= link_to item_path(item.id) do %>
               <div class='item-img-content'>
                 <% item.images.each do |i| %>
+                <%="商品 No.#{item.id}"%>
                 <%= image_tag i, class: "item-img" %>
                   <%# あとから商品購入実装後追記%>
                   <% if item.purchase.present? %>

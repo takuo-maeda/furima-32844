@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
   resources :cards, only: [:new, :create, :show, :destroy]
+  get 'products/index'
+  get 'products/search'
 end
 
 
