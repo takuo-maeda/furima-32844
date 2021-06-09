@@ -28,11 +28,13 @@ RSpec.describe "ユーザー新規登録", type: :system do
         fill_in 'password-confirmation', with: @user.password_confirmation
         fill_in 'last-name', with: @user.first_name
         fill_in 'first-name', with: @user.last_name
-        fill_in 'last-name-kana', with: @user.first_namr_prono
-        fill_in 'last-name-kana', with: @user.last_name_prono
-        fill_in 'birthday', with: @user.birthday
+        fill_in 'last-name-kana', with: @user.first_name_prono
+        fill_in 'first-name-kana', with: @user.last_name_prono
+        select '1930',from: 'user_birthday_1i'
+        select '12',from: 'user_birthday_2i'
+        select '12',from: 'user_birthday_3i'
         #サインアップボタンを押すとユーザーモデルのカウントが１上がることを確認する
-        expect{find('input[name="commit"]').click}.to change { User.count }.by•(1)
+        expect{find('input[name="commit"]').click}.to change { User.count }.by(1)
         #トップページへ遷移する
         expect(current_path). to eq(root_path)
         #カーソルを合わせるとログアウトボタンがあることを確認する
@@ -50,18 +52,20 @@ RSpec.describe "ユーザー新規登録", type: :system do
         #新規登録ページへ移動する
         visit new_user_registration_path
         #ユーザー情報を入力する
-        fill_in 'email', with: @user.email
-        fill_in 'password', with: @user.password
-        fill_in 'password-confirmation', with: @user.password_confirmation
-        fill_in 'last-name', with: @user.first_name
-        fill_in 'first-name', with: @user.last_name
-        fill_in 'last-name-kana', with: @user.first_namr_prono
-        fill_in 'last-name-kana', with: @user.last_name_prono
-        fill_in 'birthday', with: @user.birthday
+        fill_in 'email', with: ''
+        fill_in 'password', with: ''
+        fill_in 'password-confirmation', with: ''
+        fill_in 'last-name', with: ''
+        fill_in 'first-name', with: ''
+        fill_in 'last-name-kana', with: ''
+        fill_in 'first-name-kana', with: ''
+        select '1930',from: 'user_birthday_1i'
+        select '12',from: 'user_birthday_2i'
+        select '12',from: 'user_birthday_3i'
         #サインアップボタンを押してもユーザーモデルのカウントは上がらないことを確認する
-        expect{find('imput[name="commit"]').click}.to change
+        expect{find('input[name="commit"]').click}.to change { User.count }.by(0)
         #新規登録ページへ戻されることを確認する
-        expect(current_path).to eq('/users/sign_in')
+        expect(current_path).to eq('/users')
       end
     end
 end
